@@ -58,11 +58,16 @@ export default {
 			};
 			this.storedResources.unshift(newResource);
 		},
+		removeResource(id) {
+			const idx = this.storedResources.findIndex((res) => res.id === id);
+			this.storedResources.splice(idx, 1);
+		},
 	},
 	provide() {
 		return {
 			resources: this.storedResources,
 			addNewResource: this.addNewResource,
+			removeResource: this.removeResource,
 		};
 	},
 	computed: {

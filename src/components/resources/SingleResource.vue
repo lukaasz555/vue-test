@@ -4,7 +4,7 @@
 			<h3>
 				{{ title }} <span>({{ id }})</span>
 			</h3>
-			<base-button>remove</base-button>
+			<base-button mode="flat" @click="removeResource(id)">remove</base-button>
 		</header>
 		<section>
 			<p>
@@ -19,6 +19,7 @@
 import BaseCard from '../UI/BaseCard.vue';
 export default {
 	props: ['title', 'id', 'description', 'link'],
+	inject: ['removeResource'],
 	components: { BaseCard },
 };
 </script>
