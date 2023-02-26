@@ -9,10 +9,11 @@ li {
 	background-color: rgb(245, 245, 245);
 	list-style: none;
 	padding: 1.5em 2em;
-	margin-bottom: 1em;
 	border-radius: 12px;
 	position: relative;
 	z-index: 0;
+	width: 80%;
+	margin: 1em auto;
 }
 
 li::before {

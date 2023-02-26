@@ -1,11 +1,12 @@
 <template>
-	<ul>
+	<ul v-if="resources.length > 0">
 		<SingleResource
 			v-for="resource in resources"
 			v-bind="resource"
 			:key="resource.id"
 		></SingleResource>
 	</ul>
+	<p v-else>brak</p>
 </template>
 
 <script>
@@ -17,7 +18,7 @@ export default {
 	components: {
 		SingleResource,
 	},
-	props: ['resources'],
+	inject: ['resources'],
 };
 </script>
 
@@ -26,7 +27,5 @@ ul {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	width: 80%;
-	margin: 1em auto;
 }
 </style>
