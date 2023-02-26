@@ -1,16 +1,12 @@
 <template>
-	<h1>{{ message }}</h1>
-	<ul>
-		<SingleItem
-			v-for="item in storedResources"
-			v-bind="item"
-			:key="item.id"
-		></SingleItem>
-	</ul>
+	<TheHeader />
+	<StoredResources :resources="storedResources" />
 </template>
 
 <script>
-import SingleItem from './components/SingleItem.vue';
+import StoredResources from './components/resources/StoredResources.vue';
+import TheHeader from './components/layouts/TheHeader.vue';
+
 export default {
 	data() {
 		return {
@@ -33,7 +29,8 @@ export default {
 		};
 	},
 	components: {
-		SingleItem,
+		StoredResources,
+		TheHeader,
 	},
 };
 </script>
@@ -54,25 +51,6 @@ body {
 	margin: 0;
 	padding: 0;
 	box-sizing: inherit;
-}
-
-ul {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	width: 80%;
-	margin: 1em auto;
-}
-
-h1 {
-	text-align: center;
-	margin: 2em 0;
-}
-
-button {
-	border: none;
-	background: transparent;
-	cursor: pointer;
 }
 
 a {
