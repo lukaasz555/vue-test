@@ -1,4 +1,15 @@
 <template>
+	<base-dialog
+		v-if="!isFormValid"
+		title="Invalid Input"
+		@close="($event) => (this.isFormValid = true)"
+	>
+		<template #default>
+			<p>Inpust must be filled correctly.</p>
+			<p>Try again.</p>
+		</template>
+		<template #actions> </template>
+	</base-dialog>
 	<BaseCard>
 		<form @submit.prevent="handleSubmit">
 			<div>
@@ -32,9 +43,7 @@ import BaseCard from '../UI/BaseCard.vue';
 export default {
 	data() {
 		return {
-			enteredTitle: '',
-			enteredLink: '',
-			enteredDescription: '',
+			isFormValid: true,
 		};
 	},
 	inject: ['addNewResource'],
@@ -47,6 +56,15 @@ export default {
 			const enteredLink = this.$refs.linkInput.value;
 			const enteredDescription = this.$refs.descTextarea.value;
 			this.addNewResource(enteredTitle, enteredDescription, enteredLink);
+
+			if (
+				enteredTitle.trim() === '' ||
+				enteredLink.trim() === '' ||
+				enteredDescription.trim() === ''
+			) {
+				this.isFormValid = false;
+				console.log(enteredTitle);
+			}
 		},
 	},
 };
