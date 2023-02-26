@@ -13,7 +13,9 @@
 			>
 		</div>
 	</BaseCard>
-	<component :is="selectedOption"> </component>
+	<KeepAlive>
+		<component :is="selectedOption"> </component>
+	</KeepAlive>
 </template>
 
 <script>
@@ -47,10 +49,20 @@ export default {
 		setSelectedOption(opt) {
 			this.selectedOption = opt;
 		},
+		addNewResource(title, desc, link) {
+			const newResource = {
+				id: this.storedResources.length + 1,
+				title,
+				description: desc,
+				link,
+			};
+			this.storedResources.unshift(newResource);
+		},
 	},
 	provide() {
 		return {
 			resources: this.storedResources,
+			addNewResource: this.addNewResource,
 		};
 	},
 	computed: {
